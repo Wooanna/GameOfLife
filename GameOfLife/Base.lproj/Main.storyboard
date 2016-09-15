@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Board Of LiveVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="BoardOfLiveVC" customModule="GameOfLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ctF-VS-LNR" customClass="BoardView" customModule="GameOfLife" customModuleProvider="target">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gMx-py-4G8">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6A-hu-HOn" customClass="RoundedButton" customModule="GameOfLife" customModuleProvider="target">
+                                        <color key="backgroundColor" red="1" green="0.23819140758195889" blue="0.3227867172698603" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="4eY-ys-xgT"/>
+                                            <constraint firstAttribute="height" constant="50" id="bjV-nC-s67"/>
+                                        </constraints>
+                                        <state key="normal" image="restart"/>
+                                        <connections>
+                                            <action selector="restartBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y8n-LZ-klg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEc-sx-Ags" customClass="RoundedButton" customModule="GameOfLife" customModuleProvider="target">
+                                        <color key="backgroundColor" red="1" green="0.23819140759999999" blue="0.32278671730000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="54z-rU-Bbc"/>
+                                            <constraint firstAttribute="width" constant="50" id="SYm-r4-xqa"/>
+                                        </constraints>
+                                        <state key="normal" image="play"/>
+                                        <connections>
+                                            <action selector="playBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="evH-VI-27i"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgC-PN-Zcf" customClass="RoundedButton" customModule="GameOfLife" customModuleProvider="target">
+                                        <color key="backgroundColor" red="1" green="0.23819140759999999" blue="0.32278671730000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="EEH-qz-GFB"/>
+                                            <constraint firstAttribute="width" constant="50" id="clK-OW-LXt"/>
+                                        </constraints>
+                                        <state key="normal" image="pause"/>
+                                        <connections>
+                                            <action selector="pauseBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AbO-ph-Gu3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="gMx-py-4G8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dbb-r3-Oor"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gMx-py-4G8" secondAttribute="bottom" constant="20" id="nme-QJ-8Ax"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="boardView" destination="ctF-VS-LNR" id="FHp-gb-LlV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="42.728635682158924"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pause" width="100" height="100"/>
+        <image name="play" width="100" height="100"/>
+        <image name="restart" width="100" height="100"/>
+    </resources>
+</document>
