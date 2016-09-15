@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoardOfLiveVC: UIViewController {
+class BoardOfLifeVC: UIViewController {
 
     var gameBoard = BoardOfLife()
     var timer = Timer()

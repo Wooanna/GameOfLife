@@ -13,7 +13,7 @@
 		EFE173291D8A9ECA00CC2B9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE173271D8A9ECA00CC2B9F /* LaunchScreen.storyboard */; };
 		EFE173311D8A9EE200CC2B9F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE173301D8A9EE200CC2B9F /* Cell.swift */; };
 		EFE173331D8AA4AD00CC2B9F /* BoardOfLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE173321D8AA4AD00CC2B9F /* BoardOfLife.swift */; };
-		EFE173351D8AA7D600CC2B9F /* BoardOfLiveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE173341D8AA7D600CC2B9F /* BoardOfLiveVC.swift */; };
+		EFE173351D8AA7D600CC2B9F /* BoardOfLifeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE173341D8AA7D600CC2B9F /* BoardOfLifeVC.swift */; };
 		EFE173371D8AAFE100CC2B9F /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE173361D8AAFE100CC2B9F /* RoundedButton.swift */; };
 		EFE173391D8AC5C600CC2B9F /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE173381D8AC5C600CC2B9F /* BoardView.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 		EFE1732A1D8A9ECA00CC2B9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFE173301D8A9EE200CC2B9F /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		EFE173321D8AA4AD00CC2B9F /* BoardOfLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardOfLife.swift; sourceTree = "<group>"; };
-		EFE173341D8AA7D600CC2B9F /* BoardOfLiveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardOfLiveVC.swift; sourceTree = "<group>"; };
+		EFE173341D8AA7D600CC2B9F /* BoardOfLifeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardOfLifeVC.swift; sourceTree = "<group>"; };
 		EFE173361D8AAFE100CC2B9F /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EFE173381D8AC5C600CC2B9F /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,7 +69,7 @@
 				EFE1732A1D8A9ECA00CC2B9F /* Info.plist */,
 				EFE173301D8A9EE200CC2B9F /* Cell.swift */,
 				EFE173321D8AA4AD00CC2B9F /* BoardOfLife.swift */,
-				EFE173341D8AA7D600CC2B9F /* BoardOfLiveVC.swift */,
+				EFE173341D8AA7D600CC2B9F /* BoardOfLifeVC.swift */,
 				EFE173361D8AAFE100CC2B9F /* RoundedButton.swift */,
 				EFE173381D8AC5C600CC2B9F /* BoardView.swift */,
 			);
@@ -149,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFE173351D8AA7D600CC2B9F /* BoardOfLiveVC.swift in Sources */,
+				EFE173351D8AA7D600CC2B9F /* BoardOfLifeVC.swift in Sources */,
 				EFE173371D8AAFE100CC2B9F /* RoundedButton.swift in Sources */,
 				EFE173331D8AA4AD00CC2B9F /* BoardOfLife.swift in Sources */,
 				EFE173391D8AC5C600CC2B9F /* BoardView.swift in Sources */,
