@@ -8,8 +8,12 @@
 
 import UIKit
 
-class BoardOfLifeVC: UIViewController {
+enum GameState {
+    case new, running, paused
+}
 
+class BoardOfLifeVC: UIViewController {
+    var state = GameState.new
     var gameBoard = BoardOfLife()
     var timer = Timer()
     
@@ -37,30 +41,36 @@ class BoardOfLifeVC: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            let location = touch.location(in: self.view)
-            gameBoard.initializeCell(location: location)
-            boardView.setNeedsDisplay()
+        if (self.state == .new) {
+            if let touch = touches.first {
+                let location = touch.location(in: self.view)
+                gameBoard.initializeCell(location: location)
+                boardView.setNeedsDisplay()
+            }
         }
     }
     
     func startGame() {
-        if !timer.isValid {
-         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        if (self.state == .new || self.state == .paused) {
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(BoardOfLifeVC.update), userInfo: nil, repeats: true)
+            self.state = .running
         }
     }
     
     func pauseGame() {
-        if(timer.isValid) {
+        if(self.state == .running) {
             timer.invalidate()
+            self.state = .paused
         }
     }
     
     func restartGame() {
-        if(timer.isValid) {
+        if(self.state == .running || self.state == .paused) {
             timer.invalidate()
+            self.state = .new
         }
-        BoardOfLife.cells.removeAll()
+        
+        BoardOfLife.cells.forEach { $0.state = .dead }
         boardView.setNeedsDisplay()
     }
     

@@ -21,7 +21,7 @@ struct Coordinates {
     }
 }
 
-struct Cell: Equatable {
+class Cell: Equatable {
     var state : State
     var coordinates: Coordinates
     var size : Int
@@ -32,7 +32,6 @@ struct Cell: Equatable {
     }
     
     static func == (left: Cell, right: Cell) -> Bool {
-        return left.coordinates.x == right.coordinates.x && left.coordinates.y == right.coordinates.y
+        return left.coordinates.x == right.coordinates.x && left.coordinates.y == right.coordinates.y && left.state == right.state
     }
-
 }

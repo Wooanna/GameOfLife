@@ -16,8 +16,8 @@ struct BoardOfLife {
     var isZoomedOut = false
     
     init() {
-        for i in 0...10 {
-            for j in 0...10 {
+        for i in 0...25 {
+            for j in 0...25 {
                 BoardOfLife.cells.append(Cell(coordinates: Coordinates(x: i * 10, y: j * 10)))
             }
         }
@@ -35,30 +35,47 @@ struct BoardOfLife {
         let liveCells = BoardOfLife.cells.filter { $0.state == .live }
         let deadCells = BoardOfLife.cells.filter { $0.state == .dead }
         newLife(deadCells: deadCells, liveCells: liveCells)
+        dyingCells(liveCells: liveCells)
     }
     
     func newLife(deadCells: [Cell], liveCells: [Cell]) {
         
         for deadCell in deadCells {
-            var neighbours = 0
-            for cell in liveCells {
-                let delta = (abs(deadCell.coordinates.x - cell.coordinates.x), abs(deadCell.coordinates.y - cell.coordinates.y))
-                
-                switch(delta) {
-                    case (10,10), (10,0), (0,10):
-                    neighbours += 1
-                    default:
-                    break
-                }
-            }
             
-            if neighbours == 3 {
+            if neighbours(for: deadCell, cells: liveCells) == 3 {
                 let index = BoardOfLife.cells.index(where: { $0 == deadCell })
                 if let i = index {
                     BoardOfLife.cells[i].state = .live
                 }
             }
         }
+    }
+    
+    func dyingCells(liveCells: [Cell]) {
+        for liveCell in liveCells {
+            let livingNeighbours = neighbours(for: liveCell, cells: liveCells)
+            if(livingNeighbours > 3 || livingNeighbours < 2) {
+                let index = BoardOfLife.cells.index(where: { $0 == liveCell })
+                if let i = index {
+                    BoardOfLife.cells[i].state = .dead
+                }
+            }
+        }
+    }
+    
+    func neighbours(for deadCell: Cell, cells: [Cell]) -> Int {
+        var neighbours = 0
+        for cell in cells {
+            let delta = (abs(deadCell.coordinates.x - cell.coordinates.x), abs(deadCell.coordinates.y - cell.coordinates.y))
+            
+            switch(delta) {
+            case (10,10), (10,0), (0,10):
+                neighbours += 1
+            default:
+                break
+            }
+        }
+        return neighbours
     }
     
     func cellCoordinatesOn(location: CGPoint) -> Coordinates {
