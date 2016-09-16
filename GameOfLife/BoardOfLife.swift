@@ -15,10 +15,50 @@ struct BoardOfLife {
     var isZoomedIn = false
     var isZoomedOut = false
     
+    init() {
+        for i in 0...10 {
+            for j in 0...10 {
+                BoardOfLife.cells.append(Cell(coordinates: Coordinates(x: i * 10, y: j * 10)))
+            }
+        }
+    }
+    
     mutating func initializeCell(location: CGPoint) {
         let coords = cellCoordinatesOn(location: location)
-        let cell = Cell(coordinates: coords)
-        BoardOfLife.cells.append(cell)
+        let index = BoardOfLife.cells.index(where: { $0.coordinates.x == coords.x && $0.coordinates.y == coords.y })
+        if let i = index {
+        BoardOfLife.cells[i].state = .live
+        }
+    }
+    
+    func update() {
+        let liveCells = BoardOfLife.cells.filter { $0.state == .live }
+        let deadCells = BoardOfLife.cells.filter { $0.state == .dead }
+        newLife(deadCells: deadCells, liveCells: liveCells)
+    }
+    
+    func newLife(deadCells: [Cell], liveCells: [Cell]) {
+        
+        for deadCell in deadCells {
+            var neighbours = 0
+            for cell in liveCells {
+                let delta = (abs(deadCell.coordinates.x - cell.coordinates.x), abs(deadCell.coordinates.y - cell.coordinates.y))
+                
+                switch(delta) {
+                    case (10,10), (10,0), (0,10):
+                    neighbours += 1
+                    default:
+                    break
+                }
+            }
+            
+            if neighbours == 3 {
+                let index = BoardOfLife.cells.index(where: { $0 == deadCell })
+                if let i = index {
+                    BoardOfLife.cells[i].state = .live
+                }
+            }
+        }
     }
     
     func cellCoordinatesOn(location: CGPoint) -> Coordinates {

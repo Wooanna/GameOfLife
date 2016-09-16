@@ -46,7 +46,7 @@ class BoardOfLifeVC: UIViewController {
     
     func startGame() {
         if !timer.isValid {
-         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector("redraw"), userInfo: nil, repeats: true)
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         }
     }
     
@@ -60,12 +60,12 @@ class BoardOfLifeVC: UIViewController {
         if(timer.isValid) {
             timer.invalidate()
         }
-        BoardOfLife.cells = [Cell]()
+        BoardOfLife.cells.removeAll()
         boardView.setNeedsDisplay()
     }
     
-    func redraw() {
-     
+    func update() {
+        gameBoard.update()
         boardView.setNeedsDisplay()
     }
 }

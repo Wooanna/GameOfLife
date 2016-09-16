@@ -21,13 +21,18 @@ struct Coordinates {
     }
 }
 
-struct Cell {
+struct Cell: Equatable {
     var state : State
     var coordinates: Coordinates
     var size : Int
     init(coordinates: Coordinates) {
         self.coordinates = coordinates
-        self.state = .live
+        self.state = .dead
         self.size = 9
     }
+    
+    static func == (left: Cell, right: Cell) -> Bool {
+        return left.coordinates.x == right.coordinates.x && left.coordinates.y == right.coordinates.y
+    }
+
 }
