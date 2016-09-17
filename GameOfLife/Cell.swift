@@ -22,6 +22,7 @@ struct Coordinates {
 }
 
 class Cell: Equatable {
+    
     var state : State
     var coordinates: Coordinates
     var size : Int

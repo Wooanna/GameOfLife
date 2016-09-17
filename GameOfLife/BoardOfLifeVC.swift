@@ -12,16 +12,31 @@ enum GameState {
     case new, running, paused
 }
 
-class BoardOfLifeVC: UIViewController {
+class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
     var state = GameState.new
     var gameBoard = BoardOfLife()
     var timer = Timer()
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var boardView: BoardView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupScrollView()
+    }
+    
+    func setupScrollView() {
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(width: 1200, height: 900)
+        scrollView.addSubview(boardView)
+        scrollView.isUserInteractionEnabled = false
+        scrollView.minimumZoomScale = 0.5
+        scrollView.maximumZoomScale = 2
+        scrollView.zoomScale = 1.0
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return scrollView.subviews.first
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,6 +69,8 @@ class BoardOfLifeVC: UIViewController {
         if (self.state == .new || self.state == .paused) {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(BoardOfLifeVC.update), userInfo: nil, repeats: true)
             self.state = .running
+            scrollView.isUserInteractionEnabled = true
+            boardView.isUserInteractionEnabled = false
         }
     }
     
@@ -78,4 +95,6 @@ class BoardOfLifeVC: UIViewController {
         gameBoard.update()
         boardView.setNeedsDisplay()
     }
+    
+    
 }

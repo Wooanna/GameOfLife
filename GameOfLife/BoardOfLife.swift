@@ -12,8 +12,6 @@ import UIKit
 struct BoardOfLife {
     
     static var cells = [Cell]()
-    var isZoomedIn = false
-    var isZoomedOut = false
     
     init() {
         for i in 0...25 {

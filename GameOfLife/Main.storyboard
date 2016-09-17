@@ -18,11 +18,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ctF-VS-LNR" customClass="BoardView" customModule="GameOfLife" customModuleProvider="target">
-                                <frame key="frameInset" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuc-Vc-Mtc">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctF-VS-LNR" customClass="BoardView" customModule="GameOfLife" customModuleProvider="target">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1000" id="6r4-AP-lsa"/>
+                                            <constraint firstAttribute="height" constant="1000" id="p96-bu-oi5"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ctF-VS-LNR" secondAttribute="bottom" id="OyR-he-AWB"/>
+                                    <constraint firstItem="ctF-VS-LNR" firstAttribute="leading" secondItem="nuc-Vc-Mtc" secondAttribute="leading" id="khV-H0-8kr"/>
+                                    <constraint firstItem="ctF-VS-LNR" firstAttribute="top" secondItem="nuc-Vc-Mtc" secondAttribute="top" id="lUH-kC-dp8"/>
+                                    <constraint firstAttribute="trailing" secondItem="ctF-VS-LNR" secondAttribute="trailing" id="ytv-8M-DVe"/>
+                                </constraints>
+                            </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gMx-py-4G8">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6A-hu-HOn" customClass="RoundedButton" customModule="GameOfLife" customModuleProvider="target">
@@ -60,16 +72,30 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0MW-yf-9CH">
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.23529411764705882" blue="0.32156862745098042" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cpx-9s-Ajx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="nuc-Vc-Mtc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1f4-yt-Ll6"/>
+                            <constraint firstAttribute="trailing" secondItem="0MW-yf-9CH" secondAttribute="trailing" id="P0R-VW-6ZO"/>
+                            <constraint firstItem="nuc-Vc-Mtc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Zob-a0-3MA"/>
                             <constraint firstItem="gMx-py-4G8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dbb-r3-Oor"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nuc-Vc-Mtc" secondAttribute="bottom" id="eSC-mZ-aVr"/>
+                            <constraint firstItem="0MW-yf-9CH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gln-JU-kx6"/>
+                            <constraint firstAttribute="trailing" secondItem="nuc-Vc-Mtc" secondAttribute="trailing" id="mfi-nj-VGv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gMx-py-4G8" secondAttribute="bottom" constant="20" id="nme-QJ-8Ax"/>
+                            <constraint firstItem="0MW-yf-9CH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGU-kA-QF4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="boardView" destination="ctF-VS-LNR" id="FHp-gb-LlV"/>
+                        <outlet property="scrollView" destination="nuc-Vc-Mtc" id="sOH-6p-uFR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
