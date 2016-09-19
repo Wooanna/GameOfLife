@@ -12,7 +12,8 @@ enum GameState {
     case new, running, paused
 }
 
-class BoardOfLifeVC: UIViewController{
+class BoardOfLifeVC: UIViewController {
+    
     var state = GameState.new
     var gameBoard = BoardOfLife()
     var timer = Timer()
@@ -24,7 +25,6 @@ class BoardOfLifeVC: UIViewController{
         infiniteView = InfiniteView(frame: self.view.frame)
         self.view.insertSubview(infiniteView, at: 0)
         nc.addObserver(self, selector: #selector(BoardOfLifeVC.touched), name: NSNotification.Name(rawValue: "creatingNewCell"), object: nil)
-    
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +46,7 @@ class BoardOfLifeVC: UIViewController{
     func touched(notification: Notification) {
         if (self.state == .new) {
             if let locDict = notification.userInfo {
-                if let location = locDict["location"] as? CGPoint {
+                if let location = locDict["location"] as? CGPoint {                
                     gameBoard.initializeCell(location: location)
                     infiniteView.boardView.setNeedsDisplay()
                 }
