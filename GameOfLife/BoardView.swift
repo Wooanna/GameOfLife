@@ -11,18 +11,22 @@ import CoreGraphics
 class BoardView: UIView {
     
     var rects = [CGRect]()
+    var nc = NotificationCenter.default
     var contentOffsetX = 0 {
         didSet {
             print(contentOffsetX)
         }
     }
     
-    var contentOffsetY = 0
+    var contentOffsetY = 0{
+        didSet {
+            print(contentOffsetY)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-        self.isUserInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,5 +45,14 @@ class BoardView: UIView {
             }            
         context.fill(rects)
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+         
+            nc.post(name: NSNotification.Name(rawValue: "creatingNewCell"), object: nil, userInfo:["location" : location])
+        }
+        
     }
 }

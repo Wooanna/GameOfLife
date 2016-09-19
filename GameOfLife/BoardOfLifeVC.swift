@@ -17,11 +17,13 @@ class BoardOfLifeVC: UIViewController{
     var gameBoard = BoardOfLife()
     var timer = Timer()
     var infiniteView: InfiniteView!
+    var nc = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infiniteView = InfiniteView(frame: self.view.frame)
         self.view.insertSubview(infiniteView, at: 0)
+        nc.addObserver(self, selector: #selector(BoardOfLifeVC.touched), name: NSNotification.Name(rawValue: "creatingNewCell"), object: nil)
     
     }
     
@@ -41,11 +43,12 @@ class BoardOfLifeVC: UIViewController{
         pauseGame()
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func touched(notification: Notification) {
         if (self.state == .new) {
-            if let touch = touches.first {
-                let location = touch.location(in: infiniteView.boardView)
-                gameBoard.initializeCell(location: location)
+            if let locDict = notification.userInfo {
+                if let location = locDict["location"] as? CGPoint {
+                    gameBoard.initializeCell(location: location)
+                }
                 infiniteView.boardView.setNeedsDisplay()
             }
         }
