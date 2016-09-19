@@ -11,43 +11,45 @@ import UIKit
 
 struct BoardOfLife {
     
-    static var cells = [Cell]()
-    
-    init() {
-        for i in 0...25 {
-            for j in 0...25 {
-                BoardOfLife.cells.append(Cell(coordinates: Coordinates(x: i * 10, y: j * 10)))
-            }
-        }
-    }
-    
+    static var cells = Set<Cell>()
+
     mutating func initializeCell(location: CGPoint) {
         let coords = cellCoordinatesOn(location: location)
-        let index = BoardOfLife.cells.index(where: { $0.coordinates.x == coords.x && $0.coordinates.y == coords.y })
-        if let i = index {
-        BoardOfLife.cells[i].state = .live
-        }
+        let cell = Cell(coordinates: coords)
+        BoardOfLife.cells.insert(cell)
     }
     
     func update() {
-        let liveCells = BoardOfLife.cells.filter { $0.state == .live }
-        let deadCells = BoardOfLife.cells.filter { $0.state == .dead }
-        newLife(deadCells: deadCells, liveCells: liveCells)
+        let liveCells = Array(BoardOfLife.cells)
+        newLife(liveCells: liveCells)
         dyingCells(liveCells: liveCells)
     }
     
-    func newLife(deadCells: [Cell], liveCells: [Cell]) {
-        
-        for deadCell in deadCells {
+    func newLife(liveCells: [Cell]) {
+        let possibleNeighboursCoords = [(x: -10, y: -10),
+                                        (x: 0, y: -10),
+                                        (x: 10, y: -10),
+                                        (x: 10, y: 0),
+                                        (x: 10, y: 10),
+                                        (x: 0, y: 10),
+                                        (x: -10, y: 10),
+                                        (x: -10, y: 0)]
+
+        for cell in liveCells {
+            cell.possibleNewLife.removeAll()
+            for i in 0...7 {
+                let coordinates = Coordinates(x: cell.coordinates.x + possibleNeighboursCoords[i].x, y: cell.coordinates.y + possibleNeighboursCoords[i].y)
+                cell.possibleNewLife.append(Cell(coordinates: coordinates))
+            }
             
-            if neighbours(for: deadCell, cells: liveCells) == 3 {
-                let index = BoardOfLife.cells.index(where: { $0 == deadCell })
-                if let i = index {
-                    BoardOfLife.cells[i].state = .live
+            for pnl in cell.possibleNewLife {
+                if neighbours(for: pnl, cells: liveCells) == 3 {
+                    BoardOfLife.cells.insert(pnl)
                 }
             }
         }
     }
+    
     
     func dyingCells(liveCells: [Cell]) {
         for liveCell in liveCells {
@@ -55,7 +57,7 @@ struct BoardOfLife {
             if(livingNeighbours > 3 || livingNeighbours < 2) {
                 let index = BoardOfLife.cells.index(where: { $0 == liveCell })
                 if let i = index {
-                    BoardOfLife.cells[i].state = .dead
+                    BoardOfLife.cells.remove(at: i)
                 }
             }
         }

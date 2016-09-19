@@ -39,6 +39,10 @@ class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
         return scrollView.subviews.first
     }
     
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -70,7 +74,6 @@ class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(BoardOfLifeVC.update), userInfo: nil, repeats: true)
             self.state = .running
             scrollView.isUserInteractionEnabled = true
-            boardView.isUserInteractionEnabled = false
         }
     }
     
@@ -87,7 +90,7 @@ class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
             self.state = .new
         }
         
-        BoardOfLife.cells.forEach { $0.state = .dead }
+        BoardOfLife.cells.removeAll()
         boardView.setNeedsDisplay()
     }
     

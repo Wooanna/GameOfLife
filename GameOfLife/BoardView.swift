@@ -17,7 +17,7 @@ class BoardView: UIView {
         if let context = UIGraphicsGetCurrentContext() {
             
         context.setStrokeColor(UIColor.darkGray.cgColor)
-            for cell in BoardOfLife.cells where cell.state == .live {
+            for cell in BoardOfLife.cells {
                 let rect = CGRect(x: cell.coordinates.x, y: cell.coordinates.y, width: cell.size, height: cell.size)
                 
                 rects.append(rect)

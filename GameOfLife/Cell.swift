@@ -7,9 +7,6 @@
 //
 
 import Foundation
-enum State {
-    case live, dead
-}
 
 struct Coordinates {
     var x: Int
@@ -21,18 +18,23 @@ struct Coordinates {
     }
 }
 
-class Cell: Equatable {
+class Cell: Equatable, Hashable {
     
-    var state : State
     var coordinates: Coordinates
     var size : Int
+    var possibleNewLife : [Cell]
+    
     init(coordinates: Coordinates) {
         self.coordinates = coordinates
-        self.state = .dead
         self.size = 9
+        self.possibleNewLife = [Cell]()
+    }
+    
+    var hashValue: Int {
+        return self.coordinates.x.hashValue ^ self.coordinates.y.hashValue
     }
     
     static func == (left: Cell, right: Cell) -> Bool {
-        return left.coordinates.x == right.coordinates.x && left.coordinates.y == right.coordinates.y && left.state == right.state
+        return left.coordinates.x == right.coordinates.x && left.coordinates.y == right.coordinates.y
     }
 }
