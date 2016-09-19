@@ -12,35 +12,17 @@ enum GameState {
     case new, running, paused
 }
 
-class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
+class BoardOfLifeVC: UIViewController{
     var state = GameState.new
     var gameBoard = BoardOfLife()
     var timer = Timer()
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var boardView: BoardView!
+    var infiniteView: InfiniteView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScrollView()
-    }
+        infiniteView = InfiniteView(frame: self.view.frame)
+        self.view.insertSubview(infiniteView, at: 0)
     
-    func setupScrollView() {
-        scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: 1200, height: 900)
-        scrollView.addSubview(boardView)
-        scrollView.isUserInteractionEnabled = false
-        scrollView.minimumZoomScale = 0.5
-        scrollView.maximumZoomScale = 2
-        scrollView.zoomScale = 1.0
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return scrollView.subviews.first
-    }
-    
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,9 +44,9 @@ class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if (self.state == .new) {
             if let touch = touches.first {
-                let location = touch.location(in: self.view)
+                let location = touch.location(in: infiniteView.boardView)
                 gameBoard.initializeCell(location: location)
-                boardView.setNeedsDisplay()
+                infiniteView.boardView.setNeedsDisplay()
             }
         }
     }
@@ -73,7 +55,6 @@ class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
         if (self.state == .new || self.state == .paused) {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(BoardOfLifeVC.update), userInfo: nil, repeats: true)
             self.state = .running
-            scrollView.isUserInteractionEnabled = true
         }
     }
     
@@ -91,12 +72,12 @@ class BoardOfLifeVC: UIViewController, UIScrollViewDelegate {
         }
         
         BoardOfLife.cells.removeAll()
-        boardView.setNeedsDisplay()
+        infiniteView.boardView.setNeedsDisplay()
     }
     
     func update() {
         gameBoard.update()
-        boardView.setNeedsDisplay()
+        infiniteView.boardView.setNeedsDisplay()
     }
     
     

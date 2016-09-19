@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF25E3581D9005D200890A63 /* InfiniteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25E3571D9005D200890A63 /* InfiniteView.swift */; };
 		EFCB0DF71D8D3505003D9AE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFCB0DF61D8D3505003D9AE0 /* Main.storyboard */; };
 		EFE1731F1D8A9ECA00CC2B9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE1731E1D8A9ECA00CC2B9F /* AppDelegate.swift */; };
 		EFE173261D8A9ECA00CC2B9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE173251D8A9ECA00CC2B9F /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF25E3571D9005D200890A63 /* InfiniteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteView.swift; sourceTree = "<group>"; };
 		EFCB0DF61D8D3505003D9AE0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EFE1731B1D8A9ECA00CC2B9F /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE1731E1D8A9ECA00CC2B9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 				EFE173271D8A9ECA00CC2B9F /* LaunchScreen.storyboard */,
 				EFE173361D8AAFE100CC2B9F /* RoundedButton.swift */,
 				EFE173381D8AC5C600CC2B9F /* BoardView.swift */,
+				EF25E3571D9005D200890A63 /* InfiniteView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF25E3581D9005D200890A63 /* InfiniteView.swift in Sources */,
 				EFE173351D8AA7D600CC2B9F /* BoardOfLifeVC.swift in Sources */,
 				EFE173371D8AAFE100CC2B9F /* RoundedButton.swift in Sources */,
 				EFE173331D8AA4AD00CC2B9F /* BoardOfLife.swift in Sources */,
