@@ -37,13 +37,13 @@ class InfiniteView: UIScrollView, UIScrollViewDelegate {
             boardView.contentOffsetX =  boardView.contentOffsetX - Int(boardView.frame.size.width)
         }
         
-        if(scrollView.contentOffset.y >= (boardView.frame.size.height / 3) * 2) {
-            scrollView.scrollRectToVisible(CGRect(x:0, y: 0, width: frame.size.width, height: frame.size.height), animated: false)
-            boardView.contentOffsetY = boardView.contentOffsetY + Int(boardView.frame.size.height)
-        } else if(scrollView.contentOffset.y <= 0) {
-            scrollView.scrollRectToVisible(CGRect(x: 0, y: frame.size.height * 2, width: frame.size.width, height: frame.size.height), animated: false)
-            boardView.contentOffsetY =  boardView.contentOffsetY - Int(boardView.frame.size.height)
-        }
+//        if(scrollView.contentOffset.y >= (boardView.frame.size.height / 3) * 2) {
+//            scrollView.scrollRectToVisible(CGRect(x:0, y: 0, width: frame.size.width, height: frame.size.height), animated: false)
+//            boardView.contentOffsetY = boardView.contentOffsetY + Int(boardView.frame.size.height)
+//        } else if(scrollView.contentOffset.y <= 0) {
+//            scrollView.scrollRectToVisible(CGRect(x: 0, y: frame.size.height * 2, width: frame.size.width, height: frame.size.height), animated: false)
+//            boardView.contentOffsetY =  boardView.contentOffsetY - Int(boardView.frame.size.height)
+//        }
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

@@ -48,8 +48,9 @@ class BoardOfLifeVC: UIViewController{
             if let locDict = notification.userInfo {
                 if let location = locDict["location"] as? CGPoint {
                     gameBoard.initializeCell(location: location)
+                    infiniteView.boardView.setNeedsDisplay()
                 }
-                infiniteView.boardView.setNeedsDisplay()
+                
             }
         }
     }
