@@ -11,13 +11,13 @@ import CoreGraphics
 class BoardView: UIView {
     
     var rects = [CGRect]()
-    var background = [CGRect]()
+    var backgroundRects = [CGRect]()
     var nc = NotificationCenter.default
     var isBackgroundInitialized = false
         
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.white
+        backgroundColor = UIColor.white
         initBackground()
     }
     
@@ -29,7 +29,7 @@ class BoardView: UIView {
         for i in 0...Int(self.frame.width/10) {
             for j in 0...Int(self.frame.height/10) {
                 let rect = CGRect(x: 10 * i, y: 10 * j, width: 9, height: 9)
-                background.append(rect)
+                backgroundRects.append(rect)
             }
         }
     }
@@ -39,7 +39,7 @@ class BoardView: UIView {
         if let context = UIGraphicsGetCurrentContext() {
           
             context.setFillColor(UIColor(red: 0.87, green: 0.96, blue: 0.98, alpha: 1.0).cgColor)
-            context.fill(background)
+            context.fill(backgroundRects)
            
             for cell in BoardOfLife.cells {
                 if let superView = superview as? InfiniteView {
@@ -55,9 +55,8 @@ class BoardView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let location = touch.location(in: self)
-         
-            nc.post(name: NSNotification.Name(rawValue: "creatingNewCell"), object: nil, userInfo:["location" : location])
+            let notifName = NSNotification.Name(rawValue: "creatingNewCell")
+            nc.post(name: notifName, object: nil, userInfo:["location" : location])
         }
-        
     }
 }

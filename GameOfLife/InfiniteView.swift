@@ -30,15 +30,15 @@ class InfiniteView: UIScrollView, UIScrollViewDelegate, UIGestureRecognizerDeleg
         super.init(frame: frame)
         
         delegate = self
-        boardView = BoardView(frame: CGRect(origin: CGPoint(x:0, y:0), size: CGSize(width: frame.size.width * 3, height: frame.size.height * 3)))
-        insertSubview(boardView, at: 0)
-        minimumZoomScale = 0.6
-        maximumZoomScale = 3
         zoomScale = 1.0
         bounces = false
-        showsHorizontalScrollIndicator = false
+        maximumZoomScale = 3
+        minimumZoomScale = 0.6
         showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
         contentOffset = CGPoint(x: 300, y: 300)
+        boardView = BoardView(frame: CGRect(origin: CGPoint(x:0, y:0), size: CGSize(width: frame.size.width * 3,height: frame.size.height * 3)))
+        insertSubview(boardView, at: 0)
         contentSize = CGSize(width: frame.size.width * 3, height: frame.size.height * 3)
     }
     
@@ -57,6 +57,7 @@ class InfiniteView: UIScrollView, UIScrollViewDelegate, UIGestureRecognizerDeleg
             contentOffsetX = contentOffsetX - Int(contentSize.width)
             boardView.setNeedsDisplay()
         }
+        
         if (contentOffset.y > contentSize.height - frame.size.height - 1) {
             contentOffset = CGPoint(x: contentOffset.x, y: 0)
             contentOffsetY = contentOffsetY + Int(contentSize.height)

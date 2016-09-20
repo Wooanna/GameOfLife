@@ -14,15 +14,17 @@ enum GameState {
 
 class BoardOfLifeVC: UIViewController {
     
-    var state = GameState.new
     var generation = 0
-    var gameBoard = BoardOfLife()
     var timer = Timer()
+    var state = GameState.new
+    var gameBoard = BoardOfLife()
     var infiniteView: InfiniteView!
     var nc = NotificationCenter.default
+    @IBOutlet weak var generationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         infiniteView = InfiniteView(frame: self.view.frame)
         self.view.insertSubview(infiniteView, at: 0)
         nc.addObserver(self, selector: #selector(BoardOfLifeVC.touched), name: NSNotification.Name(rawValue: "creatingNewCell"), object: nil)
@@ -42,21 +44,6 @@ class BoardOfLifeVC: UIViewController {
 
     @IBAction func pauseBtnPressed(_ sender: AnyObject) {
         pauseGame()
-    }
-    
-    @IBOutlet weak var generationLabel: UILabel!
-    
-    func touched(notification: Notification) {
-        if (self.state == .new) {
-            if let locDict = notification.userInfo {
-                if let location = locDict["location"] as? CGPoint {
-                    
-                    gameBoard.initializeCell(location: CGPoint(x: location.x + CGFloat(infiniteView.contentOffsetX), y: location.y + CGFloat(infiniteView.contentOffsetY)))
-                    infiniteView.boardView.setNeedsDisplay()
-                }
-                
-            }
-        }
     }
     
     func startGame() {
@@ -91,5 +78,14 @@ class BoardOfLifeVC: UIViewController {
         infiniteView.boardView.setNeedsDisplay()
     }
     
-    
+    func touched(notification: Notification) {
+        if (self.state == .new) {
+            if let locDict = notification.userInfo {
+                if let location = locDict["location"] as? CGPoint {
+                    gameBoard.initializeCell(location: CGPoint(x: location.x + CGFloat(infiniteView.contentOffsetX), y: location.y + CGFloat(infiniteView.contentOffsetY)))
+                    infiniteView.boardView.setNeedsDisplay()
+                }
+            }
+        }
+    }
 }
