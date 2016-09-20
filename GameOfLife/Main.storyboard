@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gMx-py-4G8">
@@ -56,9 +56,20 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0MW-yf-9CH">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generation:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1J-bs-h94">
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.23529411764705882" blue="0.32156862745098042" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="g1J-bs-h94" firstAttribute="top" secondItem="0MW-yf-9CH" secondAttribute="top" constant="8" id="3a3-Mr-7cb"/>
+                                    <constraint firstAttribute="bottom" secondItem="g1J-bs-h94" secondAttribute="bottom" constant="8" id="4Vt-ou-6kU"/>
+                                    <constraint firstAttribute="trailing" secondItem="g1J-bs-h94" secondAttribute="trailing" constant="8" id="Hcm-LG-VKS"/>
                                     <constraint firstAttribute="height" constant="50" id="cpx-9s-Ajx"/>
+                                    <constraint firstItem="g1J-bs-h94" firstAttribute="leading" secondItem="0MW-yf-9CH" secondAttribute="leading" constant="8" id="mdd-kb-Frb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -72,10 +83,13 @@
                             <constraint firstItem="0MW-yf-9CH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGU-kA-QF4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="generationLabel" destination="g1J-bs-h94" id="6Wa-xe-tPZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="42.728635682158924"/>
+            <point key="canvasLocation" x="31.884057971014496" y="42.391304347826093"/>
         </scene>
     </scenes>
     <resources>

@@ -15,6 +15,7 @@ enum GameState {
 class BoardOfLifeVC: UIViewController {
     
     var state = GameState.new
+    var generation = 0
     var gameBoard = BoardOfLife()
     var timer = Timer()
     var infiniteView: InfiniteView!
@@ -43,11 +44,14 @@ class BoardOfLifeVC: UIViewController {
         pauseGame()
     }
     
+    @IBOutlet weak var generationLabel: UILabel!
+    
     func touched(notification: Notification) {
         if (self.state == .new) {
             if let locDict = notification.userInfo {
-                if let location = locDict["location"] as? CGPoint {                
-                    gameBoard.initializeCell(location: location)
+                if let location = locDict["location"] as? CGPoint {
+                    
+                    gameBoard.initializeCell(location: CGPoint(x: location.x + CGFloat(infiniteView.contentOffsetX), y: location.y + CGFloat(infiniteView.contentOffsetY)))
                     infiniteView.boardView.setNeedsDisplay()
                 }
                 
@@ -72,6 +76,7 @@ class BoardOfLifeVC: UIViewController {
     func restartGame() {
         if(self.state == .running || self.state == .paused) {
             timer.invalidate()
+            generation = 0
             self.state = .new
         }
         
@@ -81,6 +86,8 @@ class BoardOfLifeVC: UIViewController {
     
     func update() {
         gameBoard.update()
+        generation = generation + 1
+        generationLabel.text = "Generation: \(generation)"
         infiniteView.boardView.setNeedsDisplay()
     }
     

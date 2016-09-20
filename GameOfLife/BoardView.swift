@@ -14,25 +14,11 @@ class BoardView: UIView {
     var background = [CGRect]()
     var nc = NotificationCenter.default
     var isBackgroundInitialized = false
-    var contentOffsetX = 0 {
-        didSet {
-            print("x \(contentOffsetX)")
-        }
-    }
-    
-    
-    
-    var contentOffsetY = 0 {
-        didSet {
-            print("y \(contentOffsetY)")
-        }
-    }
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         initBackground()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,9 +42,10 @@ class BoardView: UIView {
             context.fill(background)
            
             for cell in BoardOfLife.cells {
-                
-                let rect = CGRect(x: cell.coordinates.x + contentOffsetX, y: cell.coordinates.y + contentOffsetY, width: cell.size, height: cell.size)
+                if let superView = superview as? InfiniteView {
+                let rect = CGRect(x: cell.coordinates.x - superView.contentOffsetX , y: cell.coordinates.y - superView.contentOffsetY, width: cell.size, height: cell.size)
                 rects.append(rect)
+                }
             }
             context.setFillColor(UIColor.darkGray.cgColor)
             context.fill(rects)
