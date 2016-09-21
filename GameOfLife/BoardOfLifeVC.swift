@@ -16,7 +16,7 @@ class BoardOfLifeVC: UIViewController {
     
     var generation = 0
     var timer = Timer()
-    var state = GameState.new
+    static var state = GameState.new
     var gameBoard = BoardOfLife()
     var infiniteView: InfiniteView!
     var nc = NotificationCenter.default
@@ -47,28 +47,27 @@ class BoardOfLifeVC: UIViewController {
     }
     
     func startGame() {
-        if (self.state == .new || self.state == .paused) {
+        if ((BoardOfLifeVC.state == .new || BoardOfLifeVC.state == .paused) && BoardOfLife.cells.count > 0) {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(BoardOfLifeVC.update), userInfo: nil, repeats: true)
-            self.state = .running
+            BoardOfLifeVC.state = .running
         }
     }
     
     func pauseGame() {
-        if(self.state == .running) {
+        if(BoardOfLifeVC.state == .running) {
             timer.invalidate()
-            self.state = .paused
+            BoardOfLifeVC.state = .paused
         }
     }
     
     func restartGame() {
-        if(self.state == .running || self.state == .paused) {
+        if(BoardOfLifeVC.state == .running || BoardOfLifeVC.state == .paused) {
             timer.invalidate()
             generation = 0
-            self.state = .new
+            BoardOfLifeVC.state = .new
+            BoardOfLife.cells.removeAll()
+            infiniteView.boardView.setNeedsDisplay()
         }
-        
-        BoardOfLife.cells.removeAll()
-        infiniteView.boardView.setNeedsDisplay()
     }
     
     func update() {
@@ -79,7 +78,7 @@ class BoardOfLifeVC: UIViewController {
     }
     
     func touched(notification: Notification) {
-        if (self.state == .new) {
+        if (BoardOfLifeVC.state == .new) {
             if let locDict = notification.userInfo {
                 if let location = locDict["location"] as? CGPoint {
                     gameBoard.initializeCell(location: CGPoint(x: location.x + CGFloat(infiniteView.contentOffsetX), y: location.y + CGFloat(infiniteView.contentOffsetY)))
@@ -87,5 +86,12 @@ class BoardOfLifeVC: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func locate(_ sender: AnyObject) {
+        infiniteView.contentOffsetY = 0
+        infiniteView.contentOffsetX = 0
+        infiniteView.contentOffset = CGPoint(x: 0, y: 0)
+        infiniteView.boardView.setNeedsDisplay()
     }
 }

@@ -14,9 +14,11 @@ class BoardView: UIView {
     var backgroundRects = [CGRect]()
     var nc = NotificationCenter.default
     var isBackgroundInitialized = false
-        
+    let notifName = NSNotification.Name(rawValue: "creatingNewCell")
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundColor = UIColor.white
         initBackground()
     }
@@ -55,7 +57,6 @@ class BoardView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let location = touch.location(in: self)
-            let notifName = NSNotification.Name(rawValue: "creatingNewCell")
             nc.post(name: notifName, object: nil, userInfo:["location" : location])
         }
     }

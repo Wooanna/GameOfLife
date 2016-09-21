@@ -62,13 +62,25 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-jF-wPQ">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="LwB-m2-Pwo"/>
+                                            <constraint firstAttribute="width" constant="35" id="woP-qx-hUt"/>
+                                        </constraints>
+                                        <state key="normal" image="locate"/>
+                                        <connections>
+                                            <action selector="locate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cto-Ae-wG3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9882352941176471" green="0.23529411764705882" blue="0.32156862745098042" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="g1J-bs-h94" firstAttribute="top" secondItem="0MW-yf-9CH" secondAttribute="top" constant="8" id="3a3-Mr-7cb"/>
                                     <constraint firstAttribute="bottom" secondItem="g1J-bs-h94" secondAttribute="bottom" constant="8" id="4Vt-ou-6kU"/>
                                     <constraint firstAttribute="trailing" secondItem="g1J-bs-h94" secondAttribute="trailing" constant="8" id="Hcm-LG-VKS"/>
-                                    <constraint firstAttribute="height" constant="50" id="cpx-9s-Ajx"/>
+                                    <constraint firstItem="Rbd-jF-wPQ" firstAttribute="top" secondItem="0MW-yf-9CH" secondAttribute="top" constant="6" id="LVT-s3-kyR"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rbd-jF-wPQ" secondAttribute="bottom" constant="5.3300000000000001" id="O0M-l9-zE2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rbd-jF-wPQ" secondAttribute="trailing" constant="8" id="ZPn-IR-KrL"/>
                                     <constraint firstItem="g1J-bs-h94" firstAttribute="leading" secondItem="0MW-yf-9CH" secondAttribute="leading" constant="8" id="mdd-kb-Frb"/>
                                 </constraints>
                             </view>
@@ -93,6 +105,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="locate" width="100" height="100"/>
         <image name="pause" width="100" height="100"/>
         <image name="play" width="100" height="100"/>
         <image name="restart" width="100" height="100"/>

@@ -11,17 +11,18 @@ import UIKit
 class InfiniteView: UIScrollView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
     var boardView : BoardView!
+    var size : CGSize!
     
     var contentOffsetX = 0 {
         didSet {
-            contentOffsetX = Int(floor(Double(contentOffsetX) / 10.0)) * 10
+            contentOffsetX = Maths.roundToTens(n: Double(contentOffsetX))
             print("x \(contentOffsetX)")
         }
     }
     
     var contentOffsetY = 0 {
         didSet {
-            contentOffsetY = Int(floor(Double(contentOffsetY) / 10.0)) * 10
+            contentOffsetY = Maths.roundToTens(n: Double(contentOffsetY))
             print("y \(contentOffsetY)")
         }
     }
@@ -29,6 +30,7 @@ class InfiniteView: UIScrollView, UIScrollViewDelegate, UIGestureRecognizerDeleg
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+
         delegate = self
         zoomScale = 1.0
         bounces = false
@@ -36,10 +38,13 @@ class InfiniteView: UIScrollView, UIScrollViewDelegate, UIGestureRecognizerDeleg
         minimumZoomScale = 0.6
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
-        contentOffset = CGPoint(x: 300, y: 300)
-        boardView = BoardView(frame: CGRect(origin: CGPoint(x:0, y:0), size: CGSize(width: frame.size.width * 3,height: frame.size.height * 3)))
+        contentOffset = CGPoint(x: 100, y: 100)
+        size = CGSize(width: Maths.roundToTens(n: Double(frame.size.width) * 3.0),
+                      height: Maths.roundToTens(n: Double(frame.size.width) * 3.0))
+        boardView = BoardView(frame: CGRect(origin: CGPoint(x:0, y:0), size: size))
         insertSubview(boardView, at: 0)
-        contentSize = CGSize(width: frame.size.width * 3, height: frame.size.height * 3)
+        contentSize = size
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +73,7 @@ class InfiniteView: UIScrollView, UIScrollViewDelegate, UIGestureRecognizerDeleg
             boardView.setNeedsDisplay()
         }
     }
-    
+   
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         scrollView.setContentOffset(scrollView.contentOffset, animated: false)
     }

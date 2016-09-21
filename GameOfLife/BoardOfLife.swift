@@ -79,13 +79,11 @@ struct BoardOfLife {
     }
     
     func cellCoordinatesOn(location: CGPoint) -> Coordinates {
-        let x = roundToTens(n: Double(location.x))
-        let y = roundToTens(n: Double(location.y))
+        let x = Maths.roundToTens(n: Double(location.x))
+        let y = Maths.roundToTens(n: Double(location.y))
 
         return Coordinates(x: x, y: y)
     }
     
-    func roundToTens(n : Double) -> Int {
-        return Int(floor(n / 10.0)) * 10
-    }
+    
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF25E3581D9005D200890A63 /* InfiniteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25E3571D9005D200890A63 /* InfiniteView.swift */; };
+		EF8E40081D92740400708F00 /* Maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8E40071D92740400708F00 /* Maths.swift */; };
 		EFCB0DF71D8D3505003D9AE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFCB0DF61D8D3505003D9AE0 /* Main.storyboard */; };
 		EFE1731F1D8A9ECA00CC2B9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE1731E1D8A9ECA00CC2B9F /* AppDelegate.swift */; };
 		EFE173261D8A9ECA00CC2B9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE173251D8A9ECA00CC2B9F /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		EF25E3571D9005D200890A63 /* InfiniteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteView.swift; sourceTree = "<group>"; };
+		EF8E40071D92740400708F00 /* Maths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maths.swift; sourceTree = "<group>"; };
 		EFCB0DF61D8D3505003D9AE0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EFE1731B1D8A9ECA00CC2B9F /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE1731E1D8A9ECA00CC2B9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				EFE1731E1D8A9ECA00CC2B9F /* AppDelegate.swift */,
 				EFE173251D8A9ECA00CC2B9F /* Assets.xcassets */,
 				EFE1732A1D8A9ECA00CC2B9F /* Info.plist */,
+				EF8E40071D92740400708F00 /* Maths.swift */,
 			);
 			path = GameOfLife;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				EF25E3581D9005D200890A63 /* InfiniteView.swift in Sources */,
 				EFE173351D8AA7D600CC2B9F /* BoardOfLifeVC.swift in Sources */,
 				EFE173371D8AAFE100CC2B9F /* RoundedButton.swift in Sources */,
+				EF8E40081D92740400708F00 /* Maths.swift in Sources */,
 				EFE173331D8AA4AD00CC2B9F /* BoardOfLife.swift in Sources */,
 				EFE173391D8AC5C600CC2B9F /* BoardView.swift in Sources */,
 				EFE1731F1D8A9ECA00CC2B9F /* AppDelegate.swift in Sources */,
